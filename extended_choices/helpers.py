@@ -10,7 +10,7 @@ The documentation format in this file is numpydoc_.
 """
 
 from __future__ import unicode_literals
-
+from django.utils.encoding import smart_str
 from builtins import object
 
 try:
@@ -271,7 +271,7 @@ class ChoiceEntry(tuple):
 
         # Call the ``tuple`` constructor with only the real tuple entries.
         obj = super(ChoiceEntry, cls).__new__(cls, tuple_[:3])
-
+        tuple_ = map(smart_str, tuple_)
         # Save all special attributes.
         obj.constant = obj._get_choice_attribute(tuple_[0])
         obj.value = obj._get_choice_attribute(tuple_[1])
